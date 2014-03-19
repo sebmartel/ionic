@@ -58,7 +58,7 @@
       <ion-view title="Welcome">
 
         <ion-nav-buttons side="left">
-          <button ng-click="sideMenuController.toggleLeft(false)" class="button button-icon ion-navicon"></button>
+          <button ng-click="sideMenuController.toggleLeft(false)" class="button button-icon icon ion-navicon"></button>
         </ion-nav-buttons>
 
         <ion-nav-buttons side="right">
@@ -151,6 +151,9 @@
 
     <script id="about.html" type="text/ng-template">
       <ion-view title="About">
+        <ion-nav-buttons side="left">
+          <button ng-click="sideMenuController.toggleLeft(false)" class="button button-icon icon ion-navicon"></button>
+        </ion-nav-buttons>
         <ion-content class="has-header">
           <h2>About us</h2>
           <div class="list">

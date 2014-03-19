@@ -331,13 +331,48 @@ angular.module('ionic.ui.sideMenu', ['ionic.service.gesture', 'ionic.service.vie
  * <a nav-clear menu-close href="#/home" class="item">Home</a>
  * ```
  */
+.directive('menuOpen', ['$ionicViewService', function($ionicViewService) {
+  return {
+    restrict: 'AC',
+    require: '?^ionSideMenus',
+    link: function($scope, $element, $attr, sideMenuCtrl) {
+      var scope = $scope;
+      var side = $scope.$eval($attr.side) || 'left';
+      $element.bind('click', function(){
+        if(side === 'left') {
+          scope.$ionicSideMenusController.toggleLeft(true);
+        } else if(side === 'right') {
+          scope.$ionicSideMenusController.toggleRight(true);
+        }
+      });
+    }
+  };
+}])
+
+/**
+ * @ngdoc directive
+ * @name menuOpen
+ * @module ionic
+ * @restrict A
+ *
+ * @description
+ * Opens a given side menu.
+ *
+ * @usage
+ * Below is an example of a link within a side menu. Tapping this link would
+ * automatically open the hidden left menu.
+ *
+ * ```html
+ * <a nav-clear menu-open="left" href="#/home" class="item">Home</a>
+ * ```
+ */
 .directive('menuClose', ['$ionicViewService', function($ionicViewService) {
   return {
     restrict: 'AC',
     require: '^ionSideMenus',
     link: function($scope, $element, $attr, sideMenuCtrl) {
       $element.bind('click', function(){
-        sideMenuCtrl.close();
+        sideMenuCtrl.toggleLeft();
       });
     }
   };
